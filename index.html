@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Day Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #countdown {
+            font-size: 2em;
+            color: #ff5733;
+        }
+    </style>
+</head>
+<body>
+    <h1>Countdown to November 16, 2027</h1>
+    <div id="countdown"></div>
+
+    <script>
+        // Target date for the countdown
+        const targetDate = new Date('2027-11-16T00:00:00').getTime();
+
+        // Update the countdown every second
+        const countdown = setInterval(function() {
+            const currentDate = new Date().getTime();
+            const timeRemaining = targetDate - currentDate;
+
+            if (timeRemaining <= 0) {
+                clearInterval(countdown);
+                document.getElementById('countdown').innerHTML = 'Countdown expired!';
+            } else {
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
